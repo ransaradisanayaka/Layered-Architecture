@@ -347,8 +347,8 @@ public class PlaceOrderFormController {
 
 
 
-boolean orderSaved=orderDAOImpl.saveOrder(orderId,orderDate,customerId);
-if (orderSaved==false){
+    boolean orderSaved=orderDAOImpl.saveOrder(orderId,orderDate,customerId);
+    if (orderSaved==false){
     return false;
 }
          //     stm = connection.prepareStatement("INSERT INTO OrderDetails (oid, itemCode, unitPrice, qty) VALUES (?,?,?,?)");
@@ -398,12 +398,7 @@ if (orderSaved==false){
 
         public ItemDTO findItem (String code){
         try {
-           /* Connection connection = DBConnection.getDbConnection().getConnection();
-            PreparedStatement pstm = connection.prepareStatement("SELECT * FROM Item WHERE code=?");
-            pstm.setString(1, code);
-            ResultSet rst = pstm.executeQuery();
-            rst.next();
-            return new ItemDTO(code, rst.getString("description"), rst.getBigDecimal("unitPrice"), rst.getInt("qtyOnHand"));*/
+
             ItemDAOImpl itemDAO = new ItemDAOImpl();
           return   itemDAO.findItem(code);
 

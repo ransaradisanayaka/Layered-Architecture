@@ -9,8 +9,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-public class OrderDetailDAOImpl {
-    public boolean saveOrderDetails(String orderId, List<OrderDetailDTO> orderDetailDTOS ) throws SQLException, ClassNotFoundException {
+public class OrderDetailDAOImpl implements OrderDetailDAO{
+ @Override
+ public boolean saveOrderDetails(String orderId, List<OrderDetailDTO> orderDetailDTOS ) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         connection.setAutoCommit(false);
         PreparedStatement pstm = connection.prepareStatement("INSERT INTO OrderDetails(oid,itemCode,qty,unitPrice) VALUES(?,?,?,?)");

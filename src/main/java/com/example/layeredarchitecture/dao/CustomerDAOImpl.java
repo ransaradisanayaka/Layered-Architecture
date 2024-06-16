@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class CustomerDAOImpl implements CustomerDAO{
+    @Override
 
     public ArrayList<CustomerDTO> loadAllCustomer() throws SQLException, ClassNotFoundException {
 
@@ -22,6 +23,7 @@ public class CustomerDAOImpl implements CustomerDAO{
         }
         return customerDTOS;
     }
+    @Override
 
     public void saveCustomer(String id, String name, String address) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
@@ -32,7 +34,7 @@ public class CustomerDAOImpl implements CustomerDAO{
         pstm.executeUpdate();
 
     }
-
+@Override
     public void updateCustomer(String id, String name, String address) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("UPDATE Customer SET name=?, address=? WHERE id=?");
@@ -41,7 +43,7 @@ public class CustomerDAOImpl implements CustomerDAO{
         pstm.setString(3, id);
         pstm.executeUpdate();
     }
-
+@Override
     public void deleteCustomer(String id) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("DELETE FROM Customer WHERE id=?");
@@ -49,13 +51,14 @@ public class CustomerDAOImpl implements CustomerDAO{
         pstm.executeUpdate();
 
     }
-
+@Override
     public boolean exitCustomer(String id) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("SELECT id FROM Customer WHERE id=?");
         pstm.setString(1, id);
         return pstm.executeQuery().next();
     }
+    @Override
 
     public String genNewId() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
@@ -69,7 +72,5 @@ public class CustomerDAOImpl implements CustomerDAO{
         }
 
     }
-    public  void getLastcustomerId(){
 
-    }
 }
